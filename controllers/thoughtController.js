@@ -48,11 +48,9 @@ const ThoughtsController = {
       })
       .then((dbUserData) => {
         if (!dbUserData) {
-          return res
-            .status(404)
-            .json({
-              message: "New Thoughts created but no user contains this id!",
-            });
+          return res.status(404).json({
+            message: "New Thoughts created but no user contains this id!",
+          });
         }
 
         res.json({ message: "New Thoughts successfully created!" });
@@ -92,11 +90,9 @@ const ThoughtsController = {
       })
       .then((dbUserData) => {
         if (!dbUserData) {
-          return res
-            .status(404)
-            .json({
-              message: "New Thoughts created but no user contains this id!",
-            });
+          return res.status(404).json({
+            message: "New Thoughts created but no user contains this id!",
+          });
         }
         res.json({ message: "Thoughts successfully removed!" });
       })
