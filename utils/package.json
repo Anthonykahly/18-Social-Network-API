@@ -1,0 +1,25 @@
+{
+  "name": "18-social-network-api",
+  "version": "1.0.0",
+  "description": "## Table of Contents",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anthonykahly/18-Social-Network-API"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Anthonykahly/18-Social-Network-API"
+  },
+  "homepage": "https://github.com/Anthonykahly/18-Social-Network-API/blob/main/README.md",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongoose": "^6.2.9"
+  }
+}
