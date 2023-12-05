@@ -1,6 +1,7 @@
 const { Users, Thought } = require("../models");
 
 const usersController = {
+  // Get All Users
   getAllUsers(req, res) {
     Users.find({})
       .populate({
@@ -15,6 +16,7 @@ const usersController = {
         res.sendStatus(400);
       });
   },
+  // Get a single User using ID
   getUsersById({ params }, res) {
     Users.findOne({ _id: params.id })
       .populate({
@@ -39,11 +41,13 @@ const usersController = {
         res.sendStatus(400);
       });
   },
+  // Create(POST)
   createUsers({ body }, res) {
     Users.create(body)
       .then((dbUsersData) => res.json(dbUsersData))
       .catch((err) => res.json(err));
   },
+  // Update (PUT) a new User
   updateUsers({ params, body }, res) {
     Users.findOneAndUpdate({ _id: params.id }, body, {
       new: true,
@@ -58,6 +62,7 @@ const usersController = {
       })
       .catch((err) => res.json(err));
   },
+  // Remove (DELETE)
   deleteUsers({ params }, res) {
     Users.findOneAndDelete({ _id: params.id })
       .then((dbUsersData) => {
@@ -71,6 +76,7 @@ const usersController = {
       })
       .catch((err) => res.json(err));
   },
+  //add a friend
   addFriend({ params }, res) {
     Users.findOneAndUpdate(
       { _id: params.usersId },
@@ -86,6 +92,7 @@ const usersController = {
       })
       .catch((err) => res.json(err));
   },
+  //delete a friend
   removeFriend({ params }, res) {
     Users.findOneAndUpdate(
       { _id: params.usersId },

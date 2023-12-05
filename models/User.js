@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 
+// create Student model
 const UsersSchema = new Schema(
   {
     usersname: {
@@ -12,7 +13,7 @@ const UsersSchema = new Schema(
       type: String,
       unique: true,
       required: "Usersname is Required",
-      match: [/.+@.+\..+/],
+      match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/, "Please enter a valid email address."]
     },
     thoughts: [
       {
@@ -35,6 +36,7 @@ const UsersSchema = new Schema(
   }
 );
 
+//refer to activity 21 if lost
 UsersSchema.virtual("friendCount").get(function () {
   return this.friends.length;
 });

@@ -2,6 +2,7 @@ const express = require("express");
 const db = require("./config/connection");
 const routes = require("./routes");
 
+//setting port to listen to
 const PORT = 3001;
 const app = express();
 
@@ -11,6 +12,7 @@ app.use(routes);
 
 db.once("open", () => {
   app.listen(PORT, () => {
+    //confirming port 
     console.log(`API server running on port ${PORT}!`);
   });
 });

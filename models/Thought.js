@@ -1,6 +1,7 @@
 const { Schema, model, Types } = require("mongoose");
 const dateFormat = require("../utils/dateFormat");
 
+//creating a student model schema
 const ReactionsSchema = new Schema(
   {
     ReactionsId: {
@@ -59,6 +60,7 @@ const ThoughtsSchema = new Schema(
   }
 );
 
+// Reference Activity 21
 ThoughtsSchema.virtual("ReactionsCount").get(function () {
   return this.Reactions.length;
 });

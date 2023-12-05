@@ -1,6 +1,7 @@
 const { Thoughts, User } = require("../models");
 
 const ThoughtsController = {
+  //getting thoughts
   getAllThoughts(req, res) {
     Thoughts.find({})
       .populate({
@@ -15,7 +16,7 @@ const ThoughtsController = {
         res.sendStatus(400);
       });
   },
-
+//get a single thought
   getThoughtsById({ params }, res) {
     Thoughts.findOne({ _id: params.id })
       .populate({
@@ -36,7 +37,6 @@ const ThoughtsController = {
         res.sendStatus(400);
       });
   },
-
   createThoughts({ params, body }, res) {
     Thoughts.create(body)
       .then(({ _id }) => {
