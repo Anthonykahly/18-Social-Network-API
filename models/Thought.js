@@ -1,15 +1,13 @@
-const { Schema, model, Types } = require("mongoose");
 const dateFormat = require("../utils/dateFormat");
+const { Schema, model, Types } = require("mongoose");
 
-//creating a student model schema
-const ReactionsSchema = new Schema(
+const reactionSchema = new Schema(
   {
-    ReactionsId: {
+    reactionId: {
       type: Schema.Types.ObjectId,
-
       default: () => new Types.ObjectId(),
     },
-    ReactionsBody: {
+    reactionBody: {
       type: String,
       required: true,
       maxlength: 280,
@@ -21,35 +19,35 @@ const ReactionsSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: (timestamp) => dateFormat(timestamp),
+      get: (createdAtVal) => dateFormat(createdAtVal),
     },
   },
   {
     toJSON: {
+      virtuals: true,
       getters: true,
     },
-    id: false,
   }
 );
 
-const ThoughtsSchema = new Schema(
+const thoughtSchema = new Schema(
   {
-    ThoughtsText: {
+    thoughtText: {
       type: String,
-      required: "Thoughts Required",
+      required: true,
       minlength: 1,
       maxlength: 280,
     },
     createdAt: {
       type: Date,
       default: Date.now,
-      get: (timestamp) => dateFormat(timestamp),
+      get: (createdAtVal) => dateFormat(createdAtVal),
     },
     username: {
       type: String,
       required: true,
     },
-    Reactions: [ReactionsSchema],
+    reactions: [reactionSchema],
   },
   {
     toJSON: {
@@ -60,11 +58,11 @@ const ThoughtsSchema = new Schema(
   }
 );
 
-// Reference Activity 21
-ThoughtsSchema.virtual("ReactionsCount").get(function () {
-  return this.Reactions.length;
+thoughtSchema.virtual("reactionCount").get(function () {
+  return this.reactions.length;
 });
 
-const Thoughts = model("Thoughts", ThoughtsSchema);
+//refer back to chapter 21 if lost
+const Thought = model("Thought", thoughtSchema);
 
-module.exports = Thoughts;
+module.exports = Thought;
